@@ -20,7 +20,6 @@ time_threshold = current_datetime - timedelta(hours=24)
 for group_id in group_id_list:
     for post in get_posts(group_id, pages=pages):
         post_time_str = str(post['time'])
-        print(post)
         # Parse the post time string into a datetime object
         post_datetime = datetime.strptime(post_time_str, '%Y-%m-%d %H:%M:%S')
 
@@ -29,7 +28,8 @@ for group_id in group_id_list:
             post_data = {
                 'Text': post['text'],
                 'Post URL': post['post_url'],
-                'Time': post['time']
+                'Time': post['time'],
+                'Images': post['images']
             }
             post_data_list.append(post_data)
 
