@@ -1,5 +1,8 @@
 from tkinter import *
 from tkinter import ttk
+import requests
+import urllib.parse
+
 
 import maps
 #import leftTab
@@ -26,7 +29,6 @@ notebook.pack(expand=1, fill='both')
 # Place widgets in tab1
 #map_widget.place(relx=1, rely=0, anchor=tkinter.NE)
 maps.tabbed_window(tab1)
-sideTab.LeftWing(tab1, "title", "url", "desc", "address", "time")
 
 
 
