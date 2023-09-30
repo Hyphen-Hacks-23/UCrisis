@@ -8,9 +8,9 @@ current_datetime = datetime.now()
 
 # Initialize an empty list to store the post data
 post_data_list = []
-
+#,'539836509530743', '660953494027689', '544879115576157', '386377711439937', '1310115422351233','464873035402535','1896100413812241'
 # Specify the group or page ID
-group_id_list = ['305407624063112', '660519427666787', '768120791123543','539836509530743', '660953494027689', '544879115576157'] #south utah, Siskiyou Alerts, Shasta County, Las Vegas News, Oakdale California, Tuolumne County
+group_id_list = ['305407624063112', '660519427666787', '768120791123543'] #south utah, Siskiyou Alerts, Shasta County, Las Vegas News, Oakdale California, Tuolumne County, Incident Scanner,Public Safety Incidents, CocoCounty, Romona
 pages = 2  # Number of pages to scrape
 
 # Define the time threshold (12 hours ago from the current time)
@@ -29,7 +29,6 @@ for group_id in group_id_list:
                 'Text': post['text'],
                 'Post URL': post['post_url'],
                 'Time': post['time'],
-                'Images': post['images']
             }
             post_data_list.append(post_data)
 
@@ -37,7 +36,7 @@ for group_id in group_id_list:
 df = pd.DataFrame(post_data_list)
 
 # Save the DataFrame to a CSV file
-csv_filename = 'facebook_posts.csv'
+csv_filename = 'facebook_postsold.csv'
 df.to_csv(csv_filename, index=False)
 
 # Print the collected post data

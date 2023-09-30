@@ -15,14 +15,14 @@ import io
 import os
 import openai
 
-LLM_prompt = "I will give you a list of prompts that revolve around crises, and I would like you to output a list. Within this list, I would like you to output one line per prompt, prompts separated by a blank line. The lines will include: what the crisis is, the Area/Address/Region of where the crisis happened, a description of the original crisis message, and a link to the original post. This list can only have crises that are WITHIN a 40 mile RADIUS of the location that I will give you. If the crisis is not within a 40 mile radius of the given location, DO NOT PRINT IT OUT. If the crisis does not have an address mention in it, DO NOT PRINT IT OUT. For each separate prompt, I will give the text that is in the prompt, a link to where the prompt was posted, and the time it was posted. Each individual prompt outputed in the list must be unique; that is if two prompts describe the same incident/crisis, output only one line for both prompts. The location is: "
-df = pd.read_csv("facebook_posts.csv")
+LLM_prompt = "I will give you a list of prompts that revolve around crises/incidents, and I would like you to output a list. Within this list, I would like you to output one line per prompt, prompts separated by a blank line. The lines will include: what the crisis/incident is, the Area/Address/Region of where the crisis/incident happened (no commas between the address, city, and country please), a description of the original crisis message, and a link to the original post. Even if a prompt doesn’t specify an address, please use context to try and give an approximate region/area as to where this happened. This list can only have crises that are WITHIN a 40 mile RADIUS of the location that I will give you. If the crisis is not within a 40 mile radius of the given location, DO NOT PRINT IT OUT. If the crisis does not have an address mention in it, DO NOT PRINT IT OUT. For each separate prompt, I will give the text that is in the prompt, a link to where the prompt was posted, and the time it was posted. Each individual prompt outputed in the list must be unique; that is if two prompts describe the same incident/crisis, output only one line for both prompts. The location is: "
+df = pd.read_csv("facebook_postsold.csv")
 prompt_list = df.to_csv(index=False)
 
 user_location = input("Please enter your location: ")
 
 # GPT
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 system_msg = "You are a helpful assistant who knows the map of the world and knows distances between different addresses."
@@ -36,7 +36,7 @@ response = openai.ChatCompletion.create(
         {"role": "user", "content": prompt},
     ],
     temperature=0.3,
-    max_tokens=2000,  # Adjust based on desired response length.
+    max_tokens=200,  # Adjust based on desired response length.
 )
 
 generated_text = response["choices"][0]["message"]["content"]
