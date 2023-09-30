@@ -19,7 +19,7 @@ def LeftWing_init(tab):
         bg = "black",
         wraplength=200
     )#.pack(side = "top")
-    TitleName.pack(side = "top", padx=10, padtop = 10, anchor="e")
+    TitleName.pack(side = "top", padx=10, pady = (10,0), anchor="e")
 
     #buffer.pack(side = "top", anchor="e", padx=10)
 
