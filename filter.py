@@ -22,7 +22,7 @@ prompt_list = df.to_csv(index=False)
 user_location = input("Please enter your location: ")
 
 # GPT
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 system_msg = "You are a helpful assistant who knows the map of the world and knows distances between different addresses."
@@ -36,7 +36,7 @@ response = openai.ChatCompletion.create(
         {"role": "user", "content": prompt},
     ],
     temperature=0.3,
-    max_tokens=200,  # Adjust based on desired response length.
+    max_tokens=450,  # Adjust based on desired response length.
 )
 
 generated_text = response["choices"][0]["message"]["content"]
