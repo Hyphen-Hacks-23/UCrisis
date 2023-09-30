@@ -90,7 +90,7 @@ def tabbed_window(tab):
      script_directory = os.path.dirname(os.path.abspath(__file__))
      database_path = os.path.join(script_directory, "offline_tiles_ca.db")
 
-     map_widget = tkintermapview.TkinterMapView(tab, width=800, height=750, corner_radius=0, database_path=database_path, use_database_only=False)
+     map_widget = tkintermapview.TkinterMapView(tab, width=1000, height=750, corner_radius=0, database_path=database_path, use_database_only=False)
 
      map_widget.place(relx=1, rely=0, anchor=tkinter.NE)
      map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga", max_zoom=22)
