@@ -1,4 +1,4 @@
-idx,title,address
-0,arson,homestead high school
-1,car break-in,755 Ocean Ave San Francisco CA 94112
-2,robbery,Golden gate bridge
+title,address
+arson,homestead high school
+car break-in,755 Ocean Ave San Francisco CA 94112
+robbery,Golden gate bridge
