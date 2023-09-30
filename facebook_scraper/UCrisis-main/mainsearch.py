@@ -10,7 +10,7 @@ current_datetime = datetime.now()
 post_data_list = []
 
 # Specify the group or page ID
-group_id_list = ['305407624063112', '660519427666787']
+group_id_list = ['305407624063112', '660519427666787', '768120791123543'] #south utah, Siskiyou Alerts, Shasta County
 pages = 1  # Number of pages to scrape
 
 # Define the time threshold (12 hours ago from the current time)
