@@ -15,20 +15,20 @@ def LeftWing(tab, title, url, desc, address, time):
         height = 1,
         fg = "white",
         bg = "black",
-    )#.pack(side = "left")
-    TitleName.pack(side = "left")
+    )#.pack(side = "top")
+    TitleName.pack(side = "top")
 
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
 
     Title = Label(tab, 
         text=title,
         width = 20, 
         height = 1,
-    )#.pack(side = "left")
-    Title.pack(side = "left")
+    )#.pack(side = "top")
+    Title.pack(side = "top")
 
-    buffer.pack(side = "left")
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
+    buffer.pack(side = "top")
 
     srcURLName = Label(tab, 
         text="Source URL:",
@@ -36,20 +36,20 @@ def LeftWing(tab, title, url, desc, address, time):
         height = 1,
         fg = "white",
         bg = "black",
-    )#.pack(side = "left")
-    srcURLName.pack(side = "left")
+    )#.pack(side = "top")
+    srcURLName.pack(side = "top")
 
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
 
     srcURL = Label(tab, 
         text=url,
         width = 20, 
         height = 1,
-    )#.pack(side = "left")
-    srcURL.pack(side = "left")
+    )#.pack(side = "top")
+    srcURL.pack(side = "top")
 
-    buffer.pack(side = "left")
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
+    buffer.pack(side = "top")
 
     AddyName = Label(tab, 
         text="Address:",
@@ -57,20 +57,20 @@ def LeftWing(tab, title, url, desc, address, time):
         height = 1,
         fg = "white",
         bg = "black",
-    )#.pack(side = "left")
-    AddyName.pack(side = "left")
+    )#.pack(side = "top")
+    AddyName.pack(side = "top")
 
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
 
     Addy = Label(tab, 
         text=address,
         width = 80, 
         height = 1,
-    )#.pack(side = "left")
-    Addy.pack(side = "left")
+    )#.pack(side = "top")
+    Addy.pack(side = "top")
 
-    buffer.pack(side = "left")
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
+    buffer.pack(side = "top")
 
     DescName = Label(tab, 
         text="Description:",
@@ -78,20 +78,20 @@ def LeftWing(tab, title, url, desc, address, time):
         height = 1,
         fg = "white",
         bg = "black",
-    )#.pack(side = "left")
-    DescName.pack(side = "left")
+    )#.pack(side = "top")
+    DescName.pack(side = "top")
 
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
 
     Desc = Label(tab, 
         text=desc,
         width = 80, 
         height = 1,
-    )#.pack(side = "left")
-    Desc.pack(side = "left")
+    )#.pack(side = "top")
+    Desc.pack(side = "top")
 
-    buffer.pack(side = "left")
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
+    buffer.pack(side = "top")
 
     TimeName = Label(tab, 
         text="Time",
@@ -99,17 +99,17 @@ def LeftWing(tab, title, url, desc, address, time):
         height = 1,
         fg = "white",
         bg = "black",
-    )#.pack(side = "left")
-    TimeName.pack(side = "left")
+    )#.pack(side = "top")
+    TimeName.pack(side = "top")
 
-    buffer.pack(side = "left")
+    buffer.pack(side = "top")
 
     Time = Label(tab, 
         text=url,
         width = 20, 
         height = 1,
-    )#.pack(side = "left")
-    Time.pack(side = "left")
+    )#.pack(side = "top")
+    Time.pack(side = "top")
 
     
 
