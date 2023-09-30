@@ -11,7 +11,7 @@ post_data_list = []
 
 # Specify the group or page ID
 group_id_list = ['305407624063112', '660519427666787', '768120791123543','539836509530743', '660953494027689', '544879115576157'] #south utah, Siskiyou Alerts, Shasta County, Las Vegas News, Oakdale California, Tuolumne County
-pages = 1  # Number of pages to scrape
+pages = 2  # Number of pages to scrape
 
 # Define the time threshold (12 hours ago from the current time)
 time_threshold = current_datetime - timedelta(hours=24)
@@ -20,7 +20,7 @@ time_threshold = current_datetime - timedelta(hours=24)
 for group_id in group_id_list:
     for post in get_posts(group_id, pages=pages):
         post_time_str = str(post['time'])
-
+        print(post)
         # Parse the post time string into a datetime object
         post_datetime = datetime.strptime(post_time_str, '%Y-%m-%d %H:%M:%S')
 
@@ -29,7 +29,7 @@ for group_id in group_id_list:
             post_data = {
                 'Text': post['text'],
                 'Post URL': post['post_url'],
-                'Time': post_time_str
+                'Time': post['time']
             }
             post_data_list.append(post_data)
 
