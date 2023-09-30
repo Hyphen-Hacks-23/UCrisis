@@ -10,6 +10,9 @@ marker_data = []
 image_titles = ["car break-in", "arson", "robbery"] 
 image_extesnions = [".jpeg", ".jpeg", ".jpeg"]
 
+window = None
+info_text = None
+
 def add_marker(marker_data, map_widget):
 
      map_markers = []
@@ -35,6 +38,9 @@ def on_marker_click(marker):
      for i in range(len(marker_data)):
           if marker_data["latitude"][i] == marker.position[0] and marker_data["longitude"][i] == marker.position[1]:
                print(marker_data["address"][i])
+               text_label.config(text=marker_data["address"][i])
+               
+
                break
 
 
@@ -44,6 +50,8 @@ def get_data():
 
 def tabbed_window(tab):
      
+     global window
+     window = tab
 
      script_directory = os.path.dirname(os.path.abspath(__file__))
      database_path = os.path.join(script_directory, "offline_tiles_ca.db")
@@ -71,6 +79,9 @@ def tabbed_window(tab):
           images[image_titles[i]] = ImageTk.PhotoImage(Image.open(os.path.join(current_path, "images", image_titles[i] + image_extesnions[i])).resize((50, 50)))
 
      add_marker(marker_data, map_widget)
+     global text_label
+     text_label = tkinter.Label(window, text="fortnite", anchor="w", wraplength=200)
+     text_label.pack(anchor="w", padx=10) 
      map_widget.set_zoom(11)
 
 def main():
