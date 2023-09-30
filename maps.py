@@ -4,6 +4,7 @@ import tkintermapview
 import os
 import pandas as pd
 from PIL import Image, ImageTk
+import csv
 
 images = {}
 marker_data = []
@@ -32,10 +33,32 @@ def add_marker(marker_data, map_widget):
 
 def on_marker_click(marker):
      #find index of marker in marker_data using longitude and latitude
-     for i in range(len(marker_data)):
+     for i in range(len(marker)):
           if marker_data["latitude"][i] == marker.position[0] and marker_data["longitude"][i] == marker.position[1]:
                print(marker_data["address"][i])
                break
+
+def create_info_dict(marker_data):
+    info_dict = {}
+    
+    for i in range(len(marker_data)):
+        title = marker_data["title"][i]
+        address = marker_data["address"][i]
+        info_dict[i] = {"title": title, "address": address}
+    
+    return info_dict
+
+def csv_to_marker_data(csv_file):
+    marker_data = {"title": [], "address": []}
+
+    with open(csv_file, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            marker_data["title"].append(row["title"])
+            marker_data["address"].append(row["address"])
+
+    return marker_data
+
 
 
 def get_data():
