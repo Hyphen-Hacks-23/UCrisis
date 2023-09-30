@@ -11,7 +11,6 @@ areas = [[(38.0119332857999, -122.87369261335327), (37.55920153980774, -122.1012
 
 
 # create OfflineLoader instance
-
 for locations in areas:
      loader = tkintermapview.OfflineLoader(path=database_path, tile_server="https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga")
      top_left_position = locations[0]
