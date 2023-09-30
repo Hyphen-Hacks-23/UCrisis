@@ -6,6 +6,8 @@ import pandas as pd
 from PIL import Image, ImageTk
 import csv
 import sideTab
+import requests
+import urllib.parse
 
 images = {}
 marker_data = []
@@ -21,27 +23,34 @@ def add_marker(marker_data, map_widget):
      print(marker_data)
 
      for j in range(len(marker_data)):
-          row = marker_data.iloc[j]
-          x, y = tkintermapview.convert_address_to_coordinates(row["address"])
+          try:
+               row = marker_data.iloc[j]
 
-          marker_data.at[j, "latitude"] = x
-          marker_data.at[j, "longitude"] = y
-          
-          for i in range(len(image_titles)):
-               if image_titles[i] in row["title"].lower():
-                    map_markers.append(map_widget.set_marker(x, y, text=row["title"], image=images[image_titles[i]], command=on_marker_click))
-                    break
-          else:
-               map_markers.append(map_widget.set_marker(x, y, text=row["title"], image=images["robbery"]))
+               #url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(row["address"]) +'?format=json'
 
+               #response = requests.get(url).json()
+               #x = response[0]["lat"]
+               #y = response[0]["lon"]
+               x, y = tkintermapview.convert_address_to_coordinates(row["address"])
+
+               marker_data.at[j, "latitude"] = x
+               marker_data.at[j, "longitude"] = y
+               
+               for i in range(len(image_titles)):
+                    if image_titles[i] in row["title"].lower():
+                         map_markers.append(map_widget.set_marker(x, y, text=row["title"], image=images[image_titles[i]], command=on_marker_click))
+                         break
+               else:
+                    map_markers.append(map_widget.set_marker(x, y, text=row["title"], image=images["robbery"], command=on_marker_click))
+          except:
+               print(row["address"])
 
 def on_marker_click(marker):
      #find index of marker in marker_data using longitude and latitude
-     for i in range(len(marker)):
+     for i in range(len(marker_data)):
           if marker_data["latitude"][i] == marker.position[0] and marker_data["longitude"][i] == marker.position[1]:
                print(marker_data["address"][i])
-               addressLabel.config(text=marker_data["address"][i])
-               titleLabel.config(text=marker_data["title"][i])
+               sideTab.update_info(marker_data["title"][i], "urlhere", "desc",  marker_data["address"][i], "time")
                
 
                break
@@ -70,7 +79,7 @@ def csv_to_marker_data(csv_file):
 
 
 def get_data():
-     data = pd.read_csv("final_markers.csv")
+     data = pd.read_csv("crisis_data.csv")
      return data
 
 def tabbed_window(tab):
@@ -94,10 +103,6 @@ def tabbed_window(tab):
      marker_data["latitude"] = 0
      marker_data["longitude"] = 0
 
-     print(marker_data)
-
-     #marker_data = [{"address" : "755 Ocean Ave, San Francisco, CA","title" : "Car break-in reported" }]
-
      current_path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 
      for i in range(len(image_titles)):
@@ -106,10 +111,10 @@ def tabbed_window(tab):
      add_marker(marker_data, map_widget)
      global addressLabel
      global titleLabel
-     #addressLabel = tkinter.Label(window, text="", anchor="w", wraplength=200)
-     #addressLabel.pack(anchor="w", padx=10) 
+     addressLabel = ' '
+     titleLabel = ' '
 
-     sideTab.LeftWing(window, titleLabel, "url", "desc", addressLabel, "time")
+     sideTab.LeftWing_init(window)
 
      map_widget.set_zoom(11)
 
