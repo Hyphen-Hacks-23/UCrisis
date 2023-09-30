@@ -5,6 +5,7 @@ import os
 import pandas as pd
 from PIL import Image, ImageTk
 import csv
+import sideTab
 
 images = {}
 marker_data = []
@@ -39,7 +40,8 @@ def on_marker_click(marker):
      for i in range(len(marker)):
           if marker_data["latitude"][i] == marker.position[0] and marker_data["longitude"][i] == marker.position[1]:
                print(marker_data["address"][i])
-               text_label.config(text=marker_data["address"][i])
+               addressLabel.config(text=marker_data["address"][i])
+               titleLabel.config(text=marker_data["title"][i])
                
 
                break
@@ -102,9 +104,13 @@ def tabbed_window(tab):
           images[image_titles[i]] = ImageTk.PhotoImage(Image.open(os.path.join(current_path, "images", image_titles[i] + image_extesnions[i])).resize((50, 50)))
 
      add_marker(marker_data, map_widget)
-     global text_label
-     text_label = tkinter.Label(window, text="fortnite", anchor="w", wraplength=200)
-     text_label.pack(anchor="w", padx=10) 
+     global addressLabel
+     global titleLabel
+     #addressLabel = tkinter.Label(window, text="", anchor="w", wraplength=200)
+     #addressLabel.pack(anchor="w", padx=10) 
+
+     sideTab.LeftWing(window, titleLabel, "url", "desc", addressLabel, "time")
+
      map_widget.set_zoom(11)
 
 def main():
