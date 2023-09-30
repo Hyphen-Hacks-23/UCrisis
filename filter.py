@@ -8,19 +8,21 @@ import torch.nn as nn
 import transformers
 from transformers import AutoModel, BertTokenizerFast
 import csv
+import re
+import io
 
 # GPT Imports
 import os
 import openai
 
 LLM_prompt = "I will give you a list of prompts that revolve around crises, and I would like you to output a list. Within this list, I would like you to output one line per prompt, prompts separated by a blank line. The lines will include: what the crisis is, the Area/Address/Region of where the crisis happened, a description of the original crisis message, and a link to the original post. This list can only have crises that are WITHIN a 40 mile RADIUS of the location that I will give you. If the crisis is not within a 40 mile radius of the given location, DO NOT PRINT IT OUT. If the crisis does not have an address mention in it, DO NOT PRINT IT OUT. For each separate prompt, I will give the text that is in the prompt, a link to where the prompt was posted, and the time it was posted. Each individual prompt outputed in the list must be unique; that is if two prompts describe the same incident/crisis, output only one line for both prompts. The location is: "
-df = pd.read_csv("facebook_scraper/facebook_posts.csv")
+df = pd.read_csv("facebook_posts.csv")
 prompt_list = df.to_csv(index=False)
 
 user_location = input("Please enter your location: ")
 
 # GPT
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 system_msg = "You are a helpful assistant who knows the map of the world and knows distances between different addresses."
@@ -39,4 +41,46 @@ response = openai.ChatCompletion.create(
 
 generated_text = response["choices"][0]["message"]["content"]
 
-print(generated_text)
+# print(generated_text)
+
+
+crisis_reports = re.split(r"\n\n+", generated_text.strip())
+
+# Initialize empty lists to store data
+crisis_list = []
+area_list = []
+description_list = []
+link_list = []
+
+# Extract data from each crisis report
+for report in crisis_reports:
+    # Use regular expressions to extract data
+    crisis_match = re.search(r"Crisis:\s+(.+)", report)
+    area_match = re.search(r"Area:\s+(.+)", report)
+    description_match = re.search(r"Description:\s+(.+)", report)
+    link_match = re.search(r"Link:\s+\[Original Post\]\((.+)\)", report)
+
+    if crisis_match and area_match and description_match and link_match:
+        crisis_list.append(crisis_match.group(1))
+        area_list.append(area_match.group(1))
+        description_list.append(description_match.group(1))
+        link_list.append(link_match.group(1))
+
+# Create a pandas DataFrame
+data = {
+    "Crisis": crisis_list,
+    "Area": area_list,
+    "Description": description_list,
+    "Link": link_list,
+}
+df = pd.DataFrame(data)
+
+# Save the DataFrame to a CSV file
+csv_file_path = "crisis_data.csv"
+df.to_csv(csv_file_path, index=False)
+
+# Display the DataFrame
+print(df)
+
+# Confirm that the CSV file has been saved
+print(f"Data saved to {csv_file_path}")
