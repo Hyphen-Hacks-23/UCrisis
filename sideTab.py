@@ -9,6 +9,27 @@ def LeftWing(tab, title, url, desc, address, time):
         height = 2,
     )
 
+    TitleName = Label(tab, 
+        text="Title:",
+        width = 20, 
+        height = 1,
+        fg = "white",
+        bg = "black",
+    )#.pack(side = "left")
+    TitleName.pack(side = "left")
+
+    buffer.pack(side = "left")
+
+    Title = Label(tab, 
+        text=title,
+        width = 20, 
+        height = 1,
+    )#.pack(side = "left")
+    Title.pack(side = "left")
+
+    buffer.pack(side = "left")
+    buffer.pack(side = "left")
+
     srcURLName = Label(tab, 
         text="Source URL:",
         width = 20, 
@@ -68,6 +89,27 @@ def LeftWing(tab, title, url, desc, address, time):
         height = 1,
     )#.pack(side = "left")
     Desc.pack(side = "left")
+
+    buffer.pack(side = "left")
+    buffer.pack(side = "left")
+
+    TimeName = Label(tab, 
+        text="Time",
+        width = 20, 
+        height = 1,
+        fg = "white",
+        bg = "black",
+    )#.pack(side = "left")
+    TimeName.pack(side = "left")
+
+    buffer.pack(side = "left")
+
+    Time = Label(tab, 
+        text=url,
+        width = 20, 
+        height = 1,
+    )#.pack(side = "left")
+    Time.pack(side = "left")
 
     
 
