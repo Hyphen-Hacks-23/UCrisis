@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 
 images = {}
 marker_data = []
-image_titles = ["carbreakin", "arson", "robbery"] 
+image_titles = ["car break-in", "arson", "robbery"] 
 image_extesnions = [".jpeg", ".jpeg", ".jpeg"]
 
 def add_marker(marker_data, map_widget):
@@ -27,7 +27,7 @@ def add_marker(marker_data, map_widget):
                     map_markers.append(map_widget.set_marker(x, y, text=row["title"], image=images[image_titles[i]], command=on_marker_click))
                     break
           else:
-               map_markers.append(map_widget.set_marker(x, y, text=row["title"], image=images["cbi.jpeg"]))
+               map_markers.append(map_widget.set_marker(x, y, text=row["title"], image=images["robbery"]))
 
 
 def on_marker_click(marker):
@@ -48,13 +48,13 @@ def tabbed_window(tab):
      script_directory = os.path.dirname(os.path.abspath(__file__))
      database_path = os.path.join(script_directory, "offline_tiles_ca.db")
 
-     map_widget = tkintermapview.TkinterMapView(tab, width=800, height=750, corner_radius=0, database_path=database_path)
+     map_widget = tkintermapview.TkinterMapView(tab, width=800, height=750, corner_radius=0, database_path=database_path, use_database_only=False)
 
      map_widget.place(relx=1, rely=0, anchor=tkinter.NE)
      map_widget.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga", max_zoom=22)
      
      map_widget.set_position(37.77493, -122.41942)  # SF
-     map_widget.set_zoom(11)
+     map_widget.set_zoom(10)
 
      global marker_data
      marker_data = get_data()
@@ -71,6 +71,7 @@ def tabbed_window(tab):
           images[image_titles[i]] = ImageTk.PhotoImage(Image.open(os.path.join(current_path, "images", image_titles[i] + image_extesnions[i])).resize((50, 50)))
 
      add_marker(marker_data, map_widget)
+     map_widget.set_zoom(11)
 
 def main():
      root_tk = tkinter.Tk()
