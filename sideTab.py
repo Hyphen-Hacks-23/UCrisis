@@ -16,7 +16,7 @@ def LeftWing_init(tab):
         width = 20, 
         height = 1,
         fg = "white",
-        bg = "black",
+        bg = f"#333333",
         wraplength=200
     )#.pack(side = "top")
     TitleName.pack(side = "top", padx=10, pady = (10,0), anchor="e")
@@ -39,7 +39,7 @@ def LeftWing_init(tab):
         width = 20, 
         height = 1,
         fg = "white",
-        bg = "black",
+        bg = f"#333333",
     )#.pack(side = "top")
     srcURLName.pack(side = "top", anchor="e", padx=10)
 
@@ -61,7 +61,7 @@ def LeftWing_init(tab):
         width = 20, 
         height = 1,
         fg = "white",
-        bg = "black",
+        bg = f"#333333",
         wraplength=200
     )#.pack(side = "top")
     AddyName.pack(side = "top", anchor="e", padx=10)
@@ -84,7 +84,7 @@ def LeftWing_init(tab):
         width = 20, 
         height = 1,
         fg = "white",
-        bg = "black",
+        bg = f"#333333",
     )#.pack(side = "top")
     DescName.pack(side = "top", anchor="e", padx=10)
 
@@ -106,7 +106,7 @@ def LeftWing_init(tab):
         width = 20, 
         height = 1,
         fg = "white",
-        bg = "black",
+        bg = f"#333333",
     )#.pack(side = "top")
     TimeName.pack(side = "top", anchor="e", padx=10)
 

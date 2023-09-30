@@ -10,7 +10,7 @@ import sideTab
 
 
 win = Tk()
-win.geometry(f"{1000}x{750}")
+win.geometry(f"{1050}x{750}")
 win.title("UCrisis")
 
 # Create a notebook that holds the tabs
