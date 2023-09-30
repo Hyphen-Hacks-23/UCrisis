@@ -4,6 +4,8 @@ import tkintermapview
 import os
 import pandas as pd
 from PIL import Image, ImageTk
+import csv
+import sideTab
 
 images = {}
 marker_data = []
@@ -35,13 +37,36 @@ def add_marker(marker_data, map_widget):
 
 def on_marker_click(marker):
      #find index of marker in marker_data using longitude and latitude
-     for i in range(len(marker_data)):
+     for i in range(len(marker)):
           if marker_data["latitude"][i] == marker.position[0] and marker_data["longitude"][i] == marker.position[1]:
                print(marker_data["address"][i])
-               text_label.config(text=marker_data["address"][i])
+               addressLabel.config(text=marker_data["address"][i])
+               titleLabel.config(text=marker_data["title"][i])
                
 
                break
+
+def create_info_dict(marker_data):
+    info_dict = {}
+    
+    for i in range(len(marker_data)):
+        title = marker_data["title"][i]
+        address = marker_data["address"][i]
+        info_dict[i] = {"title": title, "address": address}
+    
+    return info_dict
+
+def csv_to_marker_data(csv_file):
+    marker_data = {"title": [], "address": []}
+
+    with open(csv_file, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            marker_data["title"].append(row["title"])
+            marker_data["address"].append(row["address"])
+
+    return marker_data
+
 
 
 def get_data():
@@ -79,9 +104,13 @@ def tabbed_window(tab):
           images[image_titles[i]] = ImageTk.PhotoImage(Image.open(os.path.join(current_path, "images", image_titles[i] + image_extesnions[i])).resize((50, 50)))
 
      add_marker(marker_data, map_widget)
-     global text_label
-     text_label = tkinter.Label(window, text="fortnite", anchor="w", wraplength=200)
-     text_label.pack(anchor="w", padx=10) 
+     global addressLabel
+     global titleLabel
+     #addressLabel = tkinter.Label(window, text="", anchor="w", wraplength=200)
+     #addressLabel.pack(anchor="w", padx=10) 
+
+     sideTab.LeftWing(window, titleLabel, "url", "desc", addressLabel, "time")
+
      map_widget.set_zoom(11)
 
 def main():
