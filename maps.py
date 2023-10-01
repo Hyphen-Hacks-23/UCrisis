@@ -153,7 +153,7 @@ def tabbed_window(tab):
           x, y = tkintermapview.convert_address_to_coordinates(input_string)
           map_widget.set_position(x, y)
      except:
-         badEntry = tkinter.Labelp(popup, text="Invalid Address")
+         #badEntry = tkinter.Labelp(popup, text="Invalid Address")
          pass
      
      popup.destroy()
