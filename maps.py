@@ -112,7 +112,14 @@ def get_data():
 
 
 def tabbed_window(tab):
+
+
     global window
+
+    popup = tkinter.Toplevel(tab)
+    popup.title("Address Input")
+    popup.geometry("300x200") 
+
     window = tab
 
     script_directory = os.path.dirname(os.path.abspath(__file__))
