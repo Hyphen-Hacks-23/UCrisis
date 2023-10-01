@@ -112,13 +112,25 @@ def get_data():
 
 
 def tabbed_window(tab):
-
-
     global window
+    global entry_var
 
     popup = tkinter.Toplevel(tab)
+    popup.geometry("300x200")
     popup.title("Address Input")
-    popup.geometry("300x200") 
+    
+    entry_var = tkinter.StringVar()
+    entry = tkinter.Entry(popup)
+    entry.pack(padx=20, pady=10)
+
+    close_button = tkinter.Button(popup, text="Submit", command=lambda: submit_and_close(entry.get()))
+    close_button.pack(pady=10)
+
+    def submit_and_close(input_string):
+     newAddy = entry_var
+     # For this example, we'll just show it in a messagebox
+     tkinter.messagebox.showinfo("Submitted", f"You entered: {input_string}")
+     popup.destoy()
 
     window = tab
 
