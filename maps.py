@@ -74,10 +74,10 @@ def on_marker_click(marker):
             print(marker_data["address"][i])
             sideTab.update_info(
                 marker_data["title"][i],
-                "urlhere",
-                "desc",
+                marker_data["url"][i],
+                marker_data["description"][i],
                 marker_data["address"][i],
-                "time",
+                marker_data["time"][i],
             )
 
             break
@@ -107,7 +107,7 @@ def csv_to_marker_data(csv_file):
 
 
 def get_data():
-    data = pd.read_csv("final_markers.csv")
+    data = pd.read_csv("crisis_data.csv")
     return data
 
 
@@ -116,22 +116,9 @@ def tabbed_window(tab):
     global entry_var
 
     popup = tkinter.Toplevel(tab)
-    popup.geometry("300x200")
+    popup.geometry("200x100")
     popup.title("Address Input")
     
-    entry_var = tkinter.StringVar()
-    entry = tkinter.Entry(popup)
-    entry.pack(padx=20, pady=10)
-
-    close_button = tkinter.Button(popup, text="Submit", command=lambda: submit_and_close(entry.get()))
-    close_button.pack(pady=10)
-
-    def submit_and_close(input_string):
-     newAddy = entry_var
-     # For this example, we'll just show it in a messagebox
-     tkinter.messagebox.showinfo("Submitted", f"You entered: {input_string}")
-     popup.destoy()
-
     window = tab
 
     script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -153,6 +140,24 @@ def tabbed_window(tab):
 
     map_widget.set_position(37.77493, -122.41942)  # SF
     map_widget.set_zoom(10)
+
+    entry_var = tkinter.StringVar()
+    entry = tkinter.Entry(popup)
+    entry.pack(padx=20, pady=10)
+
+    close_button = tkinter.Button(popup, text="Submit", command=lambda: submit_and_close(entry.get()))
+    close_button.pack(pady=10)
+
+    def submit_and_close(input_string):
+     try:
+          x, y = tkintermapview.convert_address_to_coordinates(input_string)
+          map_widget.set_position(x, y)
+     except:
+         #badEntry = tkinter.Labelp(popup, text="Invalid Address")
+         pass
+     
+     popup.destroy()
+
 
     global marker_data
     marker_data = get_data()
