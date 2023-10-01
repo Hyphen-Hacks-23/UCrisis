@@ -27,7 +27,7 @@ prompt_list = newdf.to_csv(index=False)
 user_location = input("Please enter your location: ")
 
 # GPT
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 system_msg = "You are a helpful assistant who knows the map of the world and knows distances between different addresses."
@@ -73,9 +73,9 @@ for report in crisis_reports:
 
 # Create a pandas DataFrame
 data = {
-    "Crisis": crisis_list,
-    "Area": area_list,
-    "Description": description_list,
+    "title": crisis_list,
+    "address": area_list,
+    "description": description_list,
     "Number": link_list,
 }
 df = pd.DataFrame(data)
@@ -106,8 +106,8 @@ for index, row in df.iterrows():
         time_list.append(None)
 
 # Add 'Post URL' and 'Time' columns to the sample DataFrame
-df['Post URL'] = post_url_list
-df['Time'] = time_list
+df['url'] = post_url_list
+df['time'] = time_list
 
 # Save the DataFrame to a CSV file
 csv_file_path = "crisis_data.csv"
