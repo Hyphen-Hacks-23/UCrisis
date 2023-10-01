@@ -27,7 +27,7 @@ prompt_list = newdf.to_csv(index=False)
 user_location = input("Please enter your location: ")
 
 # GPT
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 system_msg = "You are a helpful assistant who knows the map of the world and knows distances between different addresses."
@@ -111,7 +111,7 @@ df['time'] = time_list
 
 # Save the DataFrame to a CSV file
 csv_file_path = "crisis_data.csv"
-df.to_csv(csv_file_path, index=False)
+df.to_csv(csv_file_path, mode='a', header=False, index=False)
 
 # Display the DataFrame
 print(df)

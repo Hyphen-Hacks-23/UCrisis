@@ -11,7 +11,7 @@ post_data_list = []
 
 # Specify the group or page ID
 group_id_list = ['305407624063112', '660519427666787', '768120791123543','539836509530743', '660953494027689', '544879115576157', '386377711439937', '1310115422351233','1896100413812241'] #south utah, Siskiyou Alerts, Shasta County, Las Vegas News, Oakdale California, Tuolumne County, Incident Scanner,Public Safety Incidents, CocoCounty, Romona
-pages = 1  # Number of pages to scrape
+pages = 2  # Number of pages to scrape
 
 # Define the time threshold (12 hours ago from the current time)
 time_threshold = current_datetime - timedelta(hours=24)
