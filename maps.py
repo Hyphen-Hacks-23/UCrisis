@@ -10,8 +10,8 @@ import urllib.parse
 
 images = {}
 marker_data = []
-image_titles = ["car break-in", "arson", "robbery"]
-image_extesnions = [".jpeg", ".jpeg", ".jpeg"]
+image_titles = ["car break-in", "arson", "robbery", "alert"]
+image_extesnions = [".jpeg", ".jpeg", ".jpeg", ".png"]
 
 window = None
 info_text = None
@@ -35,28 +35,31 @@ def add_marker(marker_data, map_widget):
             marker_data.at[j, "latitude"] = x
             marker_data.at[j, "longitude"] = y
 
-            for i in range(len(image_titles)):
-                if image_titles[i] in row["title"].lower():
-                    map_markers.append(
-                        map_widget.set_marker(
-                            x,
-                            y,
-                            text=row["title"],
-                            image=images[image_titles[i]],
-                            command=on_marker_click,
-                        )
-                    )
-                    break
-            else:
-                map_markers.append(
-                    map_widget.set_marker(
-                        x,
-                        y,
-                        text=row["title"],
-                        image=images["robbery"],
-                        command=on_marker_click,
-                    )
-                )
+          #   for i in range(len(image_titles)):
+          #       if image_titles[i] in row["title"].lower():
+          #           map_markers.append(
+          #               map_widget.set_marker(
+          #                   x,
+          #                   y,
+          #                   text=row["title"],
+          #                   image=images[image_titles[i]],
+          #                   icon=images["alert.png"],
+          #                   command=on_marker_click,
+                            
+          #               )
+          #           )
+          #           break
+          #   else:
+            map_markers.append(
+               map_widget.set_marker(
+               x,
+               y,
+               text=row["title"],
+               # image=images["robbery"],
+               # icon=images["alert.png"],
+               command=on_marker_click,
+               )
+          )
         except:
             print(row["address"])
 
@@ -104,7 +107,7 @@ def csv_to_marker_data(csv_file):
 
 
 def get_data():
-    data = pd.read_csv("crisis_data.csv")
+    data = pd.read_csv("final_markers.csv")
     return data
 
 
