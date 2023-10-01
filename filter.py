@@ -27,7 +27,7 @@ prompt_list = newdf.to_csv(index=False)
 user_location = input("Please enter your location: ")
 
 # GPT
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 system_msg = "You are a helpful assistant who knows the map of the world and knows distances between different addresses."
