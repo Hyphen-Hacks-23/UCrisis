@@ -27,7 +27,7 @@ prompt_list = newdf.to_csv(index=False)
 user_location = input("Please enter your location: ")
 
 # GPT
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 system_msg = "You are a helpful assistant who knows the map of the world and knows distances between different addresses."
@@ -69,7 +69,7 @@ for report in crisis_reports:
         crisis_list.append(crisis_match.group(1))
         area_list.append(area_match.group(1))
         description_list.append(description_match.group(1))
-        link_list.append(link_match.group(1))
+        link_list.append(int(link_match.group(1)))
 
 # Create a pandas DataFrame
 data = {
@@ -86,9 +86,13 @@ post_url_list = []
 time_list = []
 
 # Iterate through the sample DataFrame and populate 'Post URL' and 'Time'
+column_data_type = df['Number'].dtype
+print(f"Data type of 'Number': {column_data_type}")
 
+linkscolumn_data_type = links['Number'].dtype
+print(f"Data type of 'Number': {linkscolumn_data_type}")
 for index, row in df.iterrows():
-    number = str.strip(row['Number'])
+    number = row['Number']
     print(number)
     # Use the 'Number' value to find the corresponding row in 'df'
     matching_row = links[links['Number'] == number]
