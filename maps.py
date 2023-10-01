@@ -56,7 +56,7 @@ def add_marker(marker_data, map_widget):
                y,
                text=row["title"],
                # image=images["robbery"],
-               # icon=images["alert.png"],
+               icon=images["alert"],
                command=on_marker_click,
                )
           )
