@@ -1,6 +1,12 @@
 from tkinter import *
 import os
 from PIL import Image, ImageTk
+import webbrowser
+urlg = ""
+
+def link(event):
+    webbrowser.open_new_tab(urlg)
+
 
 def LeftWing_init(tab):
 
@@ -19,6 +25,7 @@ def LeftWing_init(tab):
         text="",
         width = 30, 
         height = 5,
+        wraplength=200
     )
     Title.pack(side = "top", anchor="e", padx=10)
 
@@ -36,8 +43,12 @@ def LeftWing_init(tab):
         text="",
         width = 30, 
         height = 5,
+        wraplength=200,
+        fg="blue", 
+        cursor="hand2",  
     )
     srcURL.pack(side = "top", anchor="e", padx=10)
+    srcURL.bind("<Button-1>", link)
 
     AddyName = Label(tab, 
         text="Address:",
@@ -54,6 +65,7 @@ def LeftWing_init(tab):
         text="",
         width = 30, 
         height = 5,
+        wraplength=200
     )
     Addy.pack(side = "top", anchor="e", padx=10)
 
@@ -71,6 +83,7 @@ def LeftWing_init(tab):
         text="",
         width = 30, 
         height = 5,
+        wraplength=250
     )
     Desc.pack(side = "top", anchor="e", padx=10)
 
@@ -88,12 +101,16 @@ def LeftWing_init(tab):
         text="",
         width = 30, 
         height = 5,
+        wraplength=200
     )
     Time.pack(side = "top", anchor="e", padx=10)
     
 def update_info(title, url, desc, address, time):
     Title.configure(text=title)
     srcURL.configure(text=url)
+    global urlg
+    urlg = url
+
     Desc.configure(text=desc)
     Addy.configure(text=address)
     Time.configure(text=time)

@@ -19,7 +19,7 @@ info_text = None
 
 def add_marker(marker_data, map_widget):
     map_markers = []
-    print(marker_data)
+    #print(marker_data)
 
     for j in range(len(marker_data)):
         try:
@@ -62,6 +62,8 @@ def add_marker(marker_data, map_widget):
           )
         except:
             print(row["address"])
+            pass
+        
 
 
 def on_marker_click(marker):
@@ -71,7 +73,7 @@ def on_marker_click(marker):
             marker_data["latitude"][i] == marker.position[0]
             and marker_data["longitude"][i] == marker.position[1]
         ):
-            print(marker_data["address"][i])
+            #(marker_data["address"][i])
             sideTab.update_info(
                 marker_data["title"][i],
                 marker_data["url"][i],
