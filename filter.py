@@ -1,4 +1,3 @@
-# Python Imports
 from transformers import RobertaTokenizer, RobertaForSequenceClassification
 import shutil
 import numpy as np
