@@ -140,7 +140,9 @@ def tabbed_window(tab):
         "https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga", max_zoom=22
     )
 
-    map_widget.set_position(37.77493, -122.41942)  # SF
+
+    x, y = tkintermapview.convert_address_to_coordinates("Webster New York")
+    map_widget.set_position(x, y)  # SF
     map_widget.set_zoom(10)
 
     entry_var = tkinter.StringVar()
